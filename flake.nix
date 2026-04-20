@@ -6,9 +6,11 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }:
+    { self, nixpkgs, ... }@inputs:
     {
       nixosConfigurations.nuc-0 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
           ./hosts/nuc-0/configuration.nix
         ];
       };

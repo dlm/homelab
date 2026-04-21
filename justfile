@@ -14,15 +14,17 @@ deploy-all:
         just deploy "$h"; \
     done
 
-check host:
+status host:
     @ssh \
-      -o ConnectTimeout=5 \
+      -o ConnectTimeout=2 \
       -o ConnectionAttempts=1 \
       -o BatchMode=yes \
-      {{host}} \
-      'echo "$(hostname): $(uptime)"' \
+      -o LogLevel=ERROR \
+      {{user}}@{{host}} \
+      'echo "{{host}}: $(uptime)"' \
+    || echo "{{host}}: down"
 
-check-all:
+status-all:
     @for h in {{hosts}}; do \
-        just check "$h"; \
+        just status "$h"; \
     done

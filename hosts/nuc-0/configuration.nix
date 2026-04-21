@@ -17,5 +17,6 @@
   # Set the name of the host
   networking.hostName = "nuc-0";
 
+  # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?
 }

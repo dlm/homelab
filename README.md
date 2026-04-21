@@ -38,3 +38,6 @@ Initialize tailscale
 sudo tailscale up
 ```
 
+
+## TODO
+- setup firewall

@@ -18,16 +18,10 @@
   networking.hostName = "nuc-0";
 
   # Set the power settings
-  services.logind = {
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
-    extraConfig = ''
-      HandleSuspendKey=ignore
-      HandleHibernateKey=ignore
-      HandleLidSwitch=ignore
-      HandleLidSwitchDocked=ignore
-      IdleAction=ignore
-    '';
+  services.logind.settings.Login = {
+    HandleSuspendKey = "ignore";
+    HandleHibernateKey = "ignore";
+    IdleAction = "ignore";
   };
 
   # Before changing this value read the documentation for this option

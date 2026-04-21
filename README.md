@@ -2,7 +2,7 @@
 
 This repo is a playground for my homelab.
 
-# Adding a new node
+## Adding a new node
 
 This is roughly the set of steps.  There may be errors since I have only run
 this a few times. It would be worth adding as a script if I started adding more

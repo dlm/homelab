@@ -7,6 +7,7 @@
     ../../modules/ssh.nix
     ../../modules/tailscale.nix
     ../../modules/users.nix
+    ../../modules/always-on.nix
   ];
 
   # Bootloader.
@@ -15,13 +16,6 @@
 
   # Set the name of the host
   networking.hostName = "laptop-0";
-
-  # Set the power settings
-  services.logind.settings.Login = {
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchDocked = "ignore";
-    IdleAction = "ignore";
-  };
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?

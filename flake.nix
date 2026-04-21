@@ -14,5 +14,12 @@
           ./hosts/nuc-0/configuration.nix
         ];
       };
+
+      nixosConfigurations.laptop-0 = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./hosts/laptop-0/configuration.nix
+        ];
+      };
     };
 }

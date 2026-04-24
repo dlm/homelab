@@ -2,6 +2,9 @@ user := "dave"
 
 hosts := "nuc-0 laptop-0"
 
+choose:
+    just --choose
+
 deploy host:
     nixos-rebuild switch \
         --flake .#{{host}} \

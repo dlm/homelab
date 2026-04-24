@@ -18,10 +18,10 @@
   # Set the name of the host
   networking.hostName = "nuc-0";
 
-  # # zfs setup
-  # boot.supportedFilesystems = [ "zfs" ];
-  # networking.hostId = "e0b68783";
-  # services.zfs.autoScrub.enable = true;
+  # zfs setup
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "e0b68783";
+  services.zfs.autoScrub.enable = true;
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?

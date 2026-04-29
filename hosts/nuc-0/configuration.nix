@@ -21,6 +21,7 @@
   # zfs setup
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "e0b68783";
+  boot.zfs.extraPools = [ "backup" ];
   services.zfs.autoScrub.enable = true;
 
   # Before changing this value read the documentation for this option

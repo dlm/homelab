@@ -24,6 +24,13 @@
   boot.zfs.extraPools = [ "backup" ];
   services.zfs.autoScrub.enable = true;
 
+  # restic backup destinations — one directory per host, owned by dave
+  # so the backup's SSH identity can write into it
+  systemd.tmpfiles.rules = [
+    "d /backups/restic/petrillo 0755 dave users -"
+    "d /backups/restic/zbornak 0755 dave users -"
+  ];
+
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?
 }

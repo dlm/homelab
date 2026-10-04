@@ -13,6 +13,7 @@
 
       # keys for restic backup tasks
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/MAgJl3jj9/ByA+mSYQ8MmWuPLM/fOsL7QRzEgM5bu restic@petrillo"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDtBjmLug3HIIIIwZvs234JFzn9nJTSAmSVi/B9ECwF4 restic@zbornak"
     ];
   };
 }

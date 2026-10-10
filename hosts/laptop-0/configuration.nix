@@ -8,6 +8,7 @@
     ../../modules/tailscale.nix
     ../../modules/users.nix
     ../../modules/always-on.nix
+    ../../modules/sudo.nix
   ];
 
   # Bootloader.

@@ -9,7 +9,8 @@ deploy host:
     nixos-rebuild switch \
         --flake .#{{host}} \
         --target-host {{user}}@{{host}} \
-        --sudo
+        --sudo \
+        --ask-sudo-password
 
 deploy-all:
     @for h in {{hosts}}; do \

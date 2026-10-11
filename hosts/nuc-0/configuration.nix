@@ -9,6 +9,7 @@
     ../../modules/always-on.nix
     ../../modules/users.nix
     ../../modules/sudo.nix
+    ../../modules/k3s.nix
   ];
 
   # Bootloader.
@@ -31,6 +32,13 @@
     "d /backups/restic/petrillo 0755 dave users -"
     "d /backups/restic/zbornak 0755 dave users -"
   ];
+
+  # k3s setup
+  homelab.k3s = {
+    enable = true;
+    role = "agent";
+    serverAddr = "https://laptop-0.warg-woodpecker.ts.net:6443";
+  };
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?

@@ -9,6 +9,7 @@
     ../../modules/users.nix
     ../../modules/always-on.nix
     ../../modules/sudo.nix
+    ../../modules/k3s.nix
   ];
 
   # Bootloader.
@@ -17,6 +18,12 @@
 
   # Set the name of the host
   networking.hostName = "laptop-0";
+
+  # k3s setup
+  homelab.k3s = {
+    enable = true;
+    role = "server";
+  };
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?

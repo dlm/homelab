@@ -36,8 +36,7 @@
   # k3s setup
   homelab.k3s = {
     enable = true;
-    role = "agent";
-    serverAddr = "https://laptop-0.warg-woodpecker.ts.net:6443";
+    agent.serverAddr = "https://laptop-0.warg-woodpecker.ts.net:6443";
   };
 
   # Before changing this value read the documentation for this option

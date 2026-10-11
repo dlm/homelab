@@ -19,11 +19,8 @@
   # Set the name of the host
   networking.hostName = "laptop-0";
 
-  # k3s setup
-  homelab.k3s = {
-    enable = true;
-    role = "server";
-  };
+  # k3s setup (as server)
+  homelab.k3s.enable = true;
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?

@@ -5,15 +5,17 @@ in
 {
   options.homelab.k3s = {
     enable = lib.mkEnableOption "k3s";
-    role = lib.mkOption {
-      type = lib.types.enum [
-        "server"
-        "agent"
-      ];
-    };
-    serverAddr = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
+    agent = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.submodule {
+          options.serverAddr = lib.mkOption {
+            type = lib.types.str;
+            description = "Address of the k3s server to join.";
+          };
+        }
+      );
       default = null;
+      description = "Set to join an existing server as an agent and leave as null to run as a server.";
     };
   };
 
@@ -25,10 +27,11 @@ in
 
     services.k3s = {
       enable = true;
-      inherit (cfg) role serverAddr;
       tokenFile = config.sops.secrets.nodeToken.path;
+      role = if cfg.agent == null then "server" else "agent";
+    }
+    // lib.optionalAttrs (cfg.agent != null) {
+      serverAddr = cfg.agent.serverAddr;
     };
-
-    # any firewall rules / assertions shared by both roles go here, once
   };
 }

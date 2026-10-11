@@ -1,0 +1,11 @@
+keys:
+  - &dave age1jr0uj89s87eedlpstxncfu995gjfcl0wvy3xfyehf552jmh6dsaqttudzx
+  - &nuc-0 age1pw72rr0382fc258xqxwcsg6myftxugxexs7edd2dfx7sxu47jeaquktc3z
+  - &laptop-0 age16nkf332vm7gtfem4yyn6thv8q40whx5rq3xre7vurl26tx4nsq8qa0zgd9
+creation_rules:
+  - path_regex: secrets/[^/]+\.yaml$
+    key_groups:
+      - age:
+        - *dave
+        - *nuc-0
+        - *laptop-0

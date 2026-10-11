@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -16,6 +20,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/nuc-0/configuration.nix
+          inputs.sops-nix.nixosModules.sops
         ];
       };
 
@@ -23,6 +28,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/laptop-0/configuration.nix
+          inputs.sops-nix.nixosModules.sops
         ];
       };
 

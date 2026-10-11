@@ -3,7 +3,13 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix = {
+      # Currently, we are on the last commit that works with go 1.25.
+      # To move to a more recent version, we will need to update
+      # to some later nixos version (not sure of the actual version).
+      url = "github:Mic92/sops-nix/13616fff713a9f94055c66f15687ebdc17a335df";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

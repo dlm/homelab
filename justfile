@@ -7,7 +7,7 @@ choose:
 
 deploy host:
     nixos-rebuild switch \
-        --flake .#{{host}} \
+        --flake ./systems#{{host}} \
         --target-host {{user}}@{{host}} \
         --sudo
 

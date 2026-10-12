@@ -36,7 +36,7 @@ name the same - only the value changed.
 For every secrets file the host needs access to:
 
 ```bash
-sops updatekeys secrets/<file>.yaml
+sops updatekeys systems/secrets/<file>.yaml
 ```
 
 This decrypts using my key and re-encrypts for the current recipient

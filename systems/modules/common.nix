@@ -18,7 +18,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # allow signed packages from my workstations
+  # allow signed packages from various sources
+  nix.settings.trusted-users = [ "dave" ];
   nix.settings.trusted-public-keys = [
     "petrillo-1:gMx5QyIPG0o2pLP+W1JTTe5w2UwDYHPmwQie28Yx+tg="
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

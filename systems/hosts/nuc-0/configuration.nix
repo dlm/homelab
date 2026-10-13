@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -34,10 +34,7 @@
   ];
 
   # k3s setup
-  homelab.k3s = {
-    enable = true;
-    agent.serverAddr = "https://laptop-0.warg-woodpecker.ts.net:6443";
-  };
+  homelab.k3s.enable = true;
 
   # Before changing this value read the documentation for this option
   system.stateVersion = "25.11"; # Did you read the comment?

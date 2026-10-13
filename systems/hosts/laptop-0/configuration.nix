@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -19,7 +19,7 @@
   # Set the name of the host
   networking.hostName = "laptop-0";
 
-  # k3s setup (as server)
+  # k3s setup
   homelab.k3s.enable = true;
 
   # Before changing this value read the documentation for this option

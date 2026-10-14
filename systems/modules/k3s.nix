@@ -23,11 +23,19 @@ in
     // lib.optionalAttrs (isServer) { extraFlags = "--tls-san=${serverFqdn}"; }
     // lib.optionalAttrs (!isServer) { serverAddr = "https://${serverFqdn}:6443"; };
 
-    # open up the flannel vxlan overlay between k3s nodes
-    networking.firewall.allowedUDPPorts = [ 8472 ];
+    networking.firewall.allowedUDPPorts = [
+      # open up the flannel vxlan overlay between k3s nodes
+      8472
+    ];
 
-    # open for k8s API server - pods on other nodes need this to reach the
-    # server via the in-cluster kubernetes service;
-    networking.firewall.allowedTCPPorts = lib.mkIf isServer [ 6443 ];
+    networking.firewall.allowedTCPPorts = [
+      # so k8s API server can reach kubelet's /logs and /exec endpoints
+      # on nodes running pods
+      10250
+    ]
+    ++ lib.optionals isServer [
+      # so pods on non-server nodes can call the in-cluster kubernetes service
+      6443
+    ];
   };
 }

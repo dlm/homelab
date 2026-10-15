@@ -41,8 +41,14 @@ metadata:
   namespace: apps
   labels:
     app: demo
+  annotations:
+    cert-manager.io/cluster-issuer: homelab-ca-issuer
 spec:
   ingressClassName: traefik
+  tls:
+    - hosts:
+        - demo.homelab.test
+      secretName: demo-tls
   rules:
   - host: demo.homelab.test
     http:

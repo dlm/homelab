@@ -47,10 +47,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-        - demo.homelab.test
+        - demo.lab.millman.us
       secretName: demo-tls
   rules:
-    - host: demo.homelab.test
+    - host: demo.lab.millman.us
       http:
         paths:
           - path: /

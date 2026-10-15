@@ -1,0 +1,10 @@
+extends: default
+
+ignore: |
+  secrets/
+  systems/secrets/
+
+rules:
+  document-start: disable
+  line-length:
+    max: 120

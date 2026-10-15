@@ -18,6 +18,7 @@
           git
           sops
           kubectl
+          yamllint
         ];
 
         shellHook = ''

@@ -16,6 +16,9 @@ deploy-all:
         just deploy "$h"; \
     done
 
+lint:
+    yamllint .
+
 status host:
     @ssh \
       -o ConnectTimeout=2 \
@@ -30,3 +33,4 @@ status-all:
     @for h in {{hosts}}; do \
         just status "$h"; \
     done
+

@@ -14,10 +14,10 @@ spec:
         app: startpage
     spec:
       containers:
-      - name: startpage
-        image: b4bz/homer:latest
-        ports:
-        - containerPort: 8080
+        - name: startpage
+          image: b4bz/homer:latest
+          ports:
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -50,14 +50,13 @@ spec:
         - startpage.homelab.test
       secretName: startpage-tls
   rules:
-  - host: startpage.homelab.test
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: startpage
-            port:
-              number: 80
-
+    - host: startpage.homelab.test
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: startpage
+                port:
+                  number: 80

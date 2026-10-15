@@ -7,11 +7,11 @@ creation_rules:
   - path_regex: ^secrets/[^/]+\.yaml$
     key_groups:
       - age:
-        - *dave
+          - *dave
 
   - path_regex: ^systems/secrets/[^/]+\.yaml$
     key_groups:
       - age:
-        - *dave
-        - *nuc-0
-        - *laptop-0
+          - *dave
+          - *nuc-0
+          - *laptop-0

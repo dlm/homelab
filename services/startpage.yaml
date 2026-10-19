@@ -15,9 +15,16 @@ spec:
     spec:
       containers:
         - name: startpage
-          image: b4bz/homer:latest
+          image: glanceapp/glance:latest
           ports:
             - containerPort: 8080
+          volumeMounts:
+            - name: config
+              mountPath: /app/config
+      volumes:
+        - name: config
+          configMap:
+            name: startpage-config
 ---
 apiVersion: v1
 kind: Service
@@ -60,3 +67,53 @@ spec:
                 name: startpage
                 port:
                   number: 80
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: startpage-config
+  namespace: apps
+data:
+  glance.yml: |
+    pages:
+      - name: Home
+        columns:
+          - size: small
+            widgets:
+              - type: search
+                search-engine: https://search.brave.com/search?q={QUERY}
+              - type: clock
+                hourFormat: 24h
+              - type: weather
+                location: Bozeman, MT
+                units: imperial
+
+          - size: full
+            widgets:
+              - type: bookmarks
+                groups:
+                  - title: Homelab
+                    links:
+                      - title: Demo
+                        url: http://demo.lab.millman.us
+                      - title: Startpage
+                        url: http://startpage.lab.millman.us
+              - type: rss
+                title: Reading
+                limit: 10
+                collapse-after: 5
+                feeds:
+                  - url: https://news.ycombinator.com/rss
+                    title: Hacker News
+                  - url: https://lobste.rs/rss
+                    title: Lobsters
+
+          - size: small
+            widgets:
+              - type: monitor
+                title: Service Status
+                sites:
+                  - title: Demo
+                    url: http://demo.lab.millman.us
+                  - title: Startpage
+                    url: http://startpage.lab.millman.us

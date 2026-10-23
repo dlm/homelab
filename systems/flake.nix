@@ -2,7 +2,7 @@
   description = "Homelab NixOS configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     sops-nix = {
       # Currently, we are on the last commit that works with go 1.25.
       # To move to a more recent version, we will need to update

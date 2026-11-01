@@ -14,7 +14,7 @@ set by `networking.hostName`.
 | key-safe | `always.enc.yaml` | `hosts.<host>.restic-password` and `hosts.<host>.restic-ssh-key` |
 | homelab | `systems/modules/users.nix` | the `restic@<host>` public key, authorized for `dave` |
 | homelab | `systems/hosts/nuc-0/configuration.nix` | the `/backups/restic/<host>` directory |
-| nixos | `hosts/<host>/configuration.nix` | `stacks.backup` with what to back up (it decrypts `hosts/<host>/restic-*` from the hostname) |
+| nixos | `hosts/<host>/configuration.nix` | `stacks.backup` with the names of those two secrets and what to back up |
 
 The same list applies when renaming a host, removing one, or rotating its
 restic key.
@@ -61,8 +61,7 @@ hosts:
             -----END OPENSSH PRIVATE KEY-----
 ```
 
-The key names have to match exactly: the nixos backup stack looks them up
-by hostname. Commit and push.
+Commit and push.
 
 ### 3. Prepare nuc-0
 
@@ -96,6 +95,8 @@ Then add to `hosts/<host>/configuration.nix`:
 ```nix
 stacks.backup = {
   enable = true;
+  passwordSecret = "hosts/<host>/restic-password";
+  sshKeySecret = "hosts/<host>/restic-ssh-key";
   paths = [
     "/home/dave/repos"
     # ...

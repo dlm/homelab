@@ -12,10 +12,9 @@ set by `networking.hostName`.
 | Repo | File | What |
 |---|---|---|
 | key-safe | `always.enc.yaml` | `hosts.<host>.restic-password` and `hosts.<host>.restic-ssh-key` |
-| key-safe | `flake.nix` | declares those two secrets so sops-nix decrypts them |
 | homelab | `systems/modules/users.nix` | the `restic@<host>` public key, authorized for `dave` |
 | homelab | `systems/hosts/nuc-0/configuration.nix` | the `/backups/restic/<host>` directory |
-| nixos | `hosts/<host>/configuration.nix` | `stacks.backup` with the secret paths and what to back up |
+| nixos | `hosts/<host>/configuration.nix` | `stacks.backup` with what to back up (it decrypts `hosts/<host>/restic-*` from the hostname) |
 
 The same list applies when renaming a host, removing one, or rotating its
 restic key.
@@ -62,14 +61,8 @@ hosts:
             -----END OPENSSH PRIVATE KEY-----
 ```
 
-Then declare them in `flake.nix` next to the other hosts' secrets:
-
-```nix
-"hosts/<host>/restic-password" = { };
-"hosts/<host>/restic-ssh-key" = { };
-```
-
-Commit and push.
+The key names have to match exactly: the nixos backup stack looks them up
+by hostname. Commit and push.
 
 ### 3. Prepare nuc-0
 
@@ -103,8 +96,6 @@ Then add to `hosts/<host>/configuration.nix`:
 ```nix
 stacks.backup = {
   enable = true;
-  sshKeySopsPath = "hosts/<host>/restic-ssh-key";
-  passwordSopsPath = "hosts/<host>/restic-password";
   paths = [
     "/home/dave/repos"
     # ...

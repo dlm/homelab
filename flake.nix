@@ -14,10 +14,10 @@
     {
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
-          just
           git
-          sops
+          just
           kubectl
+          sops
           yamllint
         ];
 

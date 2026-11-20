@@ -3,6 +3,7 @@ extends: default
 ignore: |
   secrets/
   systems/secrets/
+  clusters/*/flux-system/
 
 rules:
   document-start: disable
